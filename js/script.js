@@ -2,14 +2,18 @@ const bukus = [];
 const RENDER_EVENT = 'render-buku';
 
 document.addEventListener(RENDER_EVENT, function () {
-    console.log(bukus);
     const unreadBukuList = document.getElementById('bukus');
     unreadBukuList.innerHTML = '';
+
+    const readBukuList = document.getElementById('read-bukus')
+    readBukuList.innerHTML = '';
 
     for (const bukuItem of bukus) {
         const bukuElement = makeBuku(bukuItem);
         if (!bukuItem.isRead) {
             unreadBukuList.append(bukuElement);
+        } else {
+            readBukuList.append(bukuElement);
         }
     }
 })
@@ -95,7 +99,8 @@ function makeBuku(bukuObject) {
     hapusButton.innerText = 'Hapus Buku';
 
     hapusButton.addEventListener('click', function () {
-        hapusBuku();
+        hapusBuku(bukuObject.id);
+        console.log("kepencet");
     })
 
     containerItem.append(hapusButton);
@@ -119,4 +124,36 @@ function cariBuku(bukuId) {
         }
     }
     return null;
+}
+
+function unReadBook(bukuId) {
+    const targetBuku = cariBuku(bukuId);
+
+    if (targetBuku == null) {
+        return;
+    }
+
+    targetBuku.isRead = false;
+    document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+function hapusBuku(bukuId) {
+    const targetBuku = cariIndexBuku(bukuId);
+
+    if (targetBuku === -1) {
+        return;
+    }
+
+    bukus.splice(targetBuku,1);
+    document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+function cariIndexBuku(bukuId) {
+    for (const index in bukus){
+        if (bukus[index].id === bukuId) {
+            return index;
+        }
+    }
+
+    return -1;
 }

@@ -4,7 +4,7 @@
 }
 .container {
     margin: 0px;
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -12,35 +12,92 @@
 }
 
 .container .header{
-    background-color: black;
-    border: 1px solid;
-    border-color: red;
-    border-radius: 5px;
+    /* background-color: black; */
+    /* border: 1px solid; */
+    /* border-color: red; */
+    /* border-radius: 5px; */
+    margin-bottom: 8px;
 }
 
 .kanan {
-    background-color: green;
+    /* background-color: green; */
     width: 30%;
     flex-grow: 1;
+    padding: 14px;
 }
 
 .tengah {
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 30%;
     flex-grow: 1;
+    padding: 14px;
 }
 
 .kiri {
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 30%;
     flex-grow: 1;
+    padding: 14px;
 }
 
-.header {
+.headertop {
     background-color: red;
-    color: white;
+    color: black;
 }
 
 .text-center {
     text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid black;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.form-group-read {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.form-group label {
+    margin-bottom: 4px;
+    font-size: 18px;
+}
+
+input {
+    border: 2px solid black;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    padding: 8px;
+}
+
+input:focus {
+    outline-color: aqua;
+}
+
+.submit {
+    border-radius: 16px;
+    border: 1px solid black;
+    cursor: pointer;
+    color: black;
+    font-size: 18px;
+}
+
+.submit:hover {
+    background-color: aqua;
+    border-color: aqua;
+    color: white;
+    font-weight: bold;
 }

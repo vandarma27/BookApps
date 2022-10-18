@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1 class="header text-center">BookApps</h1>
+    <h1 class="headertop text-center">BookApps</h1>
     <div class="container">
 
         <div class="kiri">
@@ -20,6 +20,29 @@
         <div class="tengah">
             <!-- tengah -->
             <h3 class="header text-center">Tambah Buku</h3>
+            <form action="#" class="form" id="form">
+                <div class="form-group">
+                    <label for="judul">Masukan Judul Buku</label>
+                    <input type="text" name="judul" id="judul" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="penulis">Masukan Penulis Buka</label>
+                    <input type="text" name="penulis" id="penulis" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Tahun">Masukan tahun terbit</label>
+                    <input type="number" name="tahun" id="tahun" required>
+                </div>
+
+                <div class="form-group-read">
+                    <label for="read">sudah dibaca</label>
+                    <input type="checkbox" name="read" id="read" required>
+                </div>
+
+                <input type="submit" value="Submit" name="Submit" class="submit">
+            </form>
         </div>
 
         <div class="kanan">

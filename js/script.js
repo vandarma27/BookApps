@@ -8,7 +8,9 @@ document.addEventListener(RENDER_EVENT, function () {
 
     for (const bukuItem of bukus) {
         const bukuElement = makeBuku(bukuItem);
-        unreadBukuList.append(bukuElement);
+        if (!bukuItem.isRead) {
+            unreadBukuList.append(bukuElement);
+        }
     }
 })
 
@@ -99,4 +101,22 @@ function makeBuku(bukuObject) {
     containerItem.append(hapusButton);
 
     return containerItem;
+}
+
+function readBook(bukuId) {
+    const targetBuku = cariBuku(bukuId);
+
+    if (tambahBuku == null) return;
+
+    targetBuku.isRead = true;
+    document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+function cariBuku(bukuId) {
+    for (const bukuItem of bukus) {
+        if (bukuItem.id == bukuId) {
+            return bukuItem;
+        }
+    }
+    return null;
 }

@@ -64,7 +64,39 @@ function makeBuku(bukuObject) {
     const containerItem = document.createElement('div');
     containerItem.classList.add('item');
     containerItem.append(textContainer);
-    containerItem.setAttribute('id','buku-${bukuObject.id}');
+    containerItem.setAttribute('id', 'buku-${bukuObject.id}');
+
+    if (bukuObject.isRead) {
+        const unRead = document.createElement('button');
+        unRead.classList.add('unRead-button');
+        unRead.innerText = 'Belum Selesai Dibaca'
+
+        unRead.addEventListener('click', function () {
+            unReadBook(bukuObject.id);
+        })
+
+        containerItem.append(unRead);
+    } else {
+        const read = document.createElement('button');
+        read.classList.add('read-button');
+        read.innerText = 'Sudah Dibaca'
+
+        read.addEventListener('click', function () {
+            readBook(bukuObject.id);
+        })
+
+        containerItem.append(read);
+    }
+
+    const hapusButton = document.createElement('button');
+    hapusButton.classList.add('hapus-button');
+    hapusButton.innerText = 'Hapus Buku';
+
+    hapusButton.addEventListener('click', function () {
+        hapusBuku();
+    })
+
+    containerItem.append(hapusButton);
 
     return containerItem;
 }

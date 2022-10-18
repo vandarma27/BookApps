@@ -109,3 +109,46 @@ input:focus {
     font-weight: bold;
 }
 
+.read-button {
+    color: white;
+    background-color: rgb(2, 138, 2);
+    border: none;
+    padding: 4px;
+    font-size: 10px;
+    border-radius: 16px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.read-button:hover {
+    background-color: rgb(0, 188, 0);
+
+}
+
+.unRead-button {
+    color: white;
+    background-color: rgb(2, 138, 2);
+    border: none;
+    padding: 4px;
+    font-size: 10px;
+    border-radius: 16px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.unRead-button:hover {
+    background-color: rgb(0, 188, 0);
+
+}
+
+.hapus-button {
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 4px;
+    font-size: 10px;
+    border-radius: 16px;
+    margin-top: 4px;
+    margin-left: 8px;
+    cursor: pointer;
+}

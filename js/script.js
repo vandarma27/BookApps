@@ -1,5 +1,20 @@
 const bukus = [];
 const RENDER_EVENT = 'render-buku';
+const SAVED_BOOK = 'saved-book';
+const STORAGE_KEY = 'BOOK_APPS';
+
+function isStorageExist() {
+    if (typeof(Storage)===undefined) {
+        alert('browser tidak mendukung local storage');
+        return false;
+    }
+
+    return true;
+}
+
+document.addEventListener(SAVED_BOOK, function () {
+    console.log(localStorage.getItem(STORAGE_KEY));
+})
 
 document.addEventListener(RENDER_EVENT, function () {
     const unreadBukuList = document.getElementById('bukus');
@@ -24,7 +39,24 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         tambahBuku();
     });
+
+    if (isStorageExist()) {
+        loadDataFromStorage();
+      }
 });
+
+function loadDataFromStorage() {
+    const serializedData = localStorage.getItem(STORAGE_KEY);
+    let data = JSON.parse(serializedData);
+   
+    if (data !== null) {
+      for (const buku of data) {
+        bukus.push(buku);
+      }
+    }
+   
+    document.dispatchEvent(new Event(RENDER_EVENT));
+  }
 
 function tambahBuku() {
     const judulBuku = document.getElementById('judul').value;
@@ -37,6 +69,7 @@ function tambahBuku() {
     bukus.push(bukuObject);
 
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveBook();
 }
 
 function generateId() {
@@ -115,6 +148,7 @@ function readBook(bukuId) {
 
     targetBuku.isRead = true;
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveBook();
 }
 
 function cariBuku(bukuId) {
@@ -135,6 +169,7 @@ function unReadBook(bukuId) {
 
     targetBuku.isRead = false;
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveBook();
 }
 
 function hapusBuku(bukuId) {
@@ -146,6 +181,7 @@ function hapusBuku(bukuId) {
 
     bukus.splice(targetBuku,1);
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveBook();
 }
 
 function cariIndexBuku(bukuId) {
@@ -156,4 +192,12 @@ function cariIndexBuku(bukuId) {
     }
 
     return -1;
+}
+
+function saveBook() {
+    if (isStorageExist()) {
+        const parsed = JSON.stringify(bukus);
+        localStorage.setItem(STORAGE_KEY, parsed);
+        document.dispatchEvent(new Event (SAVED_BOOK));
+    }
 }
